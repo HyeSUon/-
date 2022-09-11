@@ -1,0 +1,268 @@
+import customText as ct;
+import loc;
+import cunit;
+
+const selected = $S("isSelect");
+const locCenter = $L("diffCenter");
+const allSelect = $L("AllSelect");
+const p3Heart = $L("p3Heart");
+const p4Heart = $L("p4Heart");
+const locDefender = $L("defender");
+var difficulty = -1; // 0 Easy 1 Normal 2 Hard 3 Hell
+var ownCivil = -1;
+
+const s = StringBuffer(1024);
+
+function isGuest() {
+    if(playerexist(2) && playerexist(3))
+        return true;
+    return false;
+}
+
+function Start() {
+    s.insert(0);
+    s.append("\x13\x19┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n");
+    s.append("\n\n");
+    s.append("\x13\x1E[EUD]\n");
+    s.append("\x13\x11피자vs피자 멀티버스\n");
+    s.append("\x13\x04제작 : Suros\n");
+    s.append("\n");
+    s.append("\x13\x19┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
+    if(isGuest()) {
+        s.append("\x13\x17게임모드로 설정되었습니다.");
+    }
+    else {
+        s.append("\x13\x17연습모드로 설정되었습니다. \x05(손님 부족)");
+    }
+    s.DisplayAt(0);
+}
+
+function DecideCivil() {
+    if(ownCivil == -1) {
+        GiveUnits(1, $U("난이도 설정"), P9, locCenter, CurrentPlayer);
+        ownCivil = getcurpl();
+    }
+}
+
+function init(cp) {
+    CenterView(locCenter);
+    if(Switch(selected, Cleared)) {
+        s.insert(0);
+        s.append("\t\t\t\t\t\t\t\t  \x19Easy \t\t\t\x03Normal \t\t\t\x10Hard \t\t\t\t\x06Hell");
+        s.append("\n\n\n\n\n\n\n\n");
+        s.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\x17난이도를 선택하세요");
+        s.DisplayAt(0);
+    }
+}
+
+function DiffSetting(cp) {
+    for(var i = 0; i < 4; ++i) {
+        loc.moveDiffSelLoc(i);
+        if(Bring(CurrentPlayer, AtLeast, 1, $U("난이도 설정"), loc.locDiffSel)) {
+            KillUnitAt(1, $U("난이도 설정"), loc.locDiffSel, CurrentPlayer);
+            difficulty = i;
+            s.insert(0);
+            s.append("\n\n\n\n\n\n\n\n\n\n");
+            switch(i) {
+                case 0:
+                    s.append("\x13\x19Easy");
+                    break;
+                case 1:
+                    s.append("\x13\x03Normal");
+                    break;
+                case 2:
+                    s.append("\x13\x10Hard");
+                    break;
+                case 3:
+                    s.append("\x13\x06Hell");
+                    break;
+            }
+            s.append(" \x17모드가 설정되었습니다.");
+            once {
+                switch(difficulty) {
+                case 0:
+                    SetMemory(0x662350 + 152 * 4, 7, 10000*256);
+                    SetMemory(0x662350 + 162 * 4, 7, 1000*256);
+                    SetMemoryXEPD(EPD(0x656EB0 + 81 * 2), 7, 100*65536, 0xFFFF0000);
+                    SetMemoryXEPD(EPD(0x656EB0 + 80 * 2), 7, 100, 0xFFFF);
+                    break;
+                case 1:
+                    SetMemory(0x662350 + 152 * 4, 7, 100000*256);
+                    SetMemory(0x662350 + 162 * 4, 7, 10000*256);
+                    SetMemoryXEPD(EPD(0x656EB0 + 81 * 2), 7, 1000*65536, 0xFFFF0000);
+                    SetMemoryXEPD(EPD(0x656EB0 + 80 * 2), 7, 1000, 0xFFFF);
+                    break;
+                case 2:
+                    SetMemory(0x662350 + 152 * 4, 7, 1000000*256);
+                    SetMemory(0x662350 + 162 * 4, 7, 100000*256);
+                    SetMemoryXEPD(EPD(0x656EB0 + 81 * 2), 7, 10000*65536, 0xFFFF0000);
+                    SetMemoryXEPD(EPD(0x656EB0 + 80 * 2), 7, 10000, 0xFFFF);
+                    break;
+                case 3:
+                    SetMemory(0x662350 + 152 * 4, 7, 3000000*256);
+                    SetMemory(0x662350 + 162 * 4, 7, 300000*256);
+                    SetMemoryXEPD(EPD(0x656EB0 + 81 * 2), 7, 30000*65536, 0xFFFF0000);
+                    SetMemoryXEPD(EPD(0x656EB0 + 80 * 2), 7, 30000, 0xFFFF);
+                    break;
+                }
+                if(playerexist(2)) {
+                    CreateUnit(1, $U("손님의 심장"), p3Heart, 2);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3488, 2400, 3552, 2464);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3552, 2432, 3616, 2496);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3616, 2464, 3680, 2528);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3680, 2496, 3744, 2560);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3744, 2528, 3808, 2592);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3808, 2560, 3872, 2624);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3872, 2592, 3936, 2656);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 3936, 2624, 4000, 2688);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4192, 2624, 4256, 2688);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4256, 2592, 4320, 2656);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4320, 2560, 4384, 2624);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4384, 2528, 4448, 2592);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4448, 2496, 4512, 2560);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4512, 2464, 4576, 2528);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4576, 2432, 4640, 2496);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4640, 2400, 4704, 2464);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                    setloc(locDefender, 4704, 2368, 4768, 2432);
+                    CreateUnit(1, $U("방어막"), locDefender, 2);
+                }
+                else {
+                    CreateUnit(1, $U("손님의 심장"), p3Heart, 4);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3488, 2400, 3552, 2464);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3552, 2432, 3616, 2496);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3616, 2464, 3680, 2528);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3680, 2496, 3744, 2560);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3744, 2528, 3808, 2592);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3808, 2560, 3872, 2624);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3872, 2592, 3936, 2656);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3936, 2624, 4000, 2688);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4192, 2624, 4256, 2688);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4256, 2592, 4320, 2656);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4320, 2560, 4384, 2624);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4384, 2528, 4448, 2592);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4448, 2496, 4512, 2560);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4512, 2464, 4576, 2528);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4576, 2432, 4640, 2496);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4640, 2400, 4704, 2464);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4704, 2368, 4768, 2432);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                }
+                if(playerexist(3)) {
+                    CreateUnit(1, $U("손님의 심장"), p4Heart, 3);
+                    setloc(locDefender, 3424, 5760, 3488, 5824);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3488, 5728, 3552, 5792);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3552, 5696, 3616, 5760);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3616, 5664, 3680, 5728);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3680, 5632, 3744, 5696);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3744, 5600, 3808, 5664);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3808, 5568, 3872, 5632);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3872, 5536, 3936, 5600);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 3936, 5504, 4000, 5568);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4192, 5504, 4256, 5568);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4256, 5536, 4320, 5600);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4320, 5568, 4384, 5632);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4384, 5600, 4448, 5664);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4448, 5632, 4512, 5696);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4512, 5664, 4576, 5728);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4576, 5696, 4640, 5760);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4640, 5728, 4704, 5792);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                    setloc(locDefender, 4704, 5760, 4768, 5824);
+                    CreateUnit(1, $U("방어막"), locDefender, 3);
+                }
+                else {
+                    CreateUnit(1, $U("손님의 심장"), p4Heart, 4);
+                    setloc(locDefender, 3424, 5760, 3488, 5824);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3488, 5728, 3552, 5792);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3552, 5696, 3616, 5760);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3616, 5664, 3680, 5728);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3680, 5632, 3744, 5696);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3744, 5600, 3808, 5664);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3808, 5568, 3872, 5632);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3872, 5536, 3936, 5600);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 3936, 5504, 4000, 5568);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4192, 5504, 4256, 5568);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4256, 5536, 4320, 5600);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4320, 5568, 4384, 5632);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4384, 5600, 4448, 5664);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4448, 5632, 4512, 5696);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4512, 5664, 4576, 5728);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4576, 5696, 4640, 5760);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4640, 5728, 4704, 5792);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                    setloc(locDefender, 4704, 5760, 4768, 5824);
+                    CreateUnit(1, $U("방어막"), locDefender, 4);
+                }
+            }
+
+            return true;
+        }
+    }
+    return false;
+}

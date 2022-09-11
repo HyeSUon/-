@@ -1,0 +1,391 @@
+import loc;
+import option;
+function BaseTable(cp) {
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("불"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("밀가루") ,loc.locComb)) {
+        KillUnitAt(1, $U("불"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("밀가루"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("피자 판"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("칼"), loc.locComb)) {
+        KillUnitAt(2, $U("칼"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("큰 칼"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("생햄"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("큰 칼") ,loc.locComb)) {
+        KillUnitAt(1, $U("생햄"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("큰 칼"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("자른 햄"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("자른 햄"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불") ,loc.locComb)) {
+        KillUnitAt(1, $U("자른 햄"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("구운 햄"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("피망"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("큰 칼") ,loc.locComb)) {
+        KillUnitAt(1, $U("피망"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("큰 칼"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("자른 피망"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("피자 판"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("치즈") ,loc.locComb)) {
+        KillUnitAt(1, $U("피자 판"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("치즈"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("치즈 뿌린 피자판"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("생고기"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불") ,loc.locComb)) {
+        KillUnitAt(1, $U("생고기"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("불고기"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("오이"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재어두기") ,loc.locComb)) {
+        KillUnitAt(1, $U("오이"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재어두기"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("오이 피클"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("치즈 뿌린 피자판"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("크러스트 기술") ,loc.locComb)) {
+        KillUnitAt(1, $U("치즈 뿌린 피자판"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("크러스트 기술"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("치즈 크러스트"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 3, $U("재료섞는방법"), loc.locComb)) {
+        KillUnitAt(3, $U("재료섞는방법"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("오이 피클"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("자른 피망") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("구운 햄") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("오이 피클"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("자른 피망"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("구운 햄"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("야채"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("이산화탄소"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("콜라 원액") ,loc.locComb)) {
+        KillUnitAt(1, $U("이산화탄소"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("콜라 원액"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("캔콜라"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("캔콜라"), loc.locComb)) {
+        KillUnitAt(2, $U("캔콜라"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("1.5MM 콜라"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("1.5MM 콜라"), loc.locComb)) {
+        KillUnitAt(2, $U("1.5MM 콜라"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("제일 큰 콜라"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("불고기"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("치즈 뿌린 피자판") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("불고기"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("치즈 뿌린 피자판"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("야채"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("치즈 뿌린 피자판") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("야채"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("치즈 뿌린 피자판"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("야채 피자"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("야채 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("야채 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("불고기 야채 피자"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("야채 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("치즈 크러스트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("야채 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("치즈 크러스트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("야채 크러스트 피자"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("야채 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("야채 크러스트 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기 야채 피자") ,loc.locComb)) {
+        KillUnitAt(1, $U("야채 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("야채 크러스트 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기 야채 피자"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("콤비네이션 피자"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("불고기 야채 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("오이 피클") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("자른 햄") ,loc.locComb)) {
+        KillUnitAt(1, $U("불고기 야채 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("오이 피클"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("자른 햄"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("모닝 세트"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("야채"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("캔콜라") ,loc.locComb)) {
+        KillUnitAt(2, $U("야채"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("캔콜라"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("크라이 엔도 세트"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("콤비네이션 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("야채 크러스트 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기 야채 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("제일 큰 콜라") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("콤비네이션 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("야채 크러스트 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기 야채 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("제일 큰 콜라"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 3, $U("피자/피자 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(3, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("퓨전 세트"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("퓨전 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("콤비네이션 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("모닝 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("크라이 엔도 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("야채 크러스트 피자") ,loc.locComb)) {
+        KillUnitAt(1, $U("퓨전 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("콤비네이션 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("모닝 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("크라이 엔도 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("야채 크러스트 피자"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("마스터 멕스 세트 [G]"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("퓨전 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("피자/피자 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("모닝 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("크라이 엔도 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("야채 크러스트 피자") ,loc.locComb)) {
+        KillUnitAt(1, $U("퓨전 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("모닝 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("크라이 엔도 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("야채 크러스트 피자"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("마스터 멕스 세트 [A]"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 7, $U("크러스트 기술"), loc.locComb)) {
+        KillUnitAt(7, $U("크러스트 기술"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("신의 기술"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 3, $U("퓨전 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("신의 기술") ,loc.locComb)) {
+        KillUnitAt(3, $U("퓨전 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("신의 기술"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("신의 세트"), loc.locComb, CurrentPlayer);
+    }
+    if(Switch(option.sLeftover+cp, Cleared)) {
+        if(Bring(CurrentPlayer, AtLeast, 2, $U("크라이 엔도 세트"), loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 3, $U("야채 피자") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 2, $U("불고기") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 5, $U("구운 햄") ,loc.locComb)) {
+            KillUnitAt(2, $U("크라이 엔도 세트"), loc.locComb, CurrentPlayer);
+            KillUnitAt(3, $U("야채 피자"), loc.locComb, CurrentPlayer);
+            KillUnitAt(2, $U("불고기"), loc.locComb, CurrentPlayer);
+            KillUnitAt(5, $U("구운 햄"), loc.locComb, CurrentPlayer);
+            CreateUnit(1, $U("궁극의 비밀재료"), loc.locComb, CurrentPlayer);
+        }
+        if(Bring(CurrentPlayer, AtLeast, 3, $U("모닝 세트"), loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 3, $U("불고기 피자") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 2, $U("재료 혼합 책") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 5, $U("밀가루") ,loc.locComb)) {
+            KillUnitAt(3, $U("모닝 세트"), loc.locComb, CurrentPlayer);
+            KillUnitAt(3, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+            KillUnitAt(2, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+            KillUnitAt(5, $U("밀가루"), loc.locComb, CurrentPlayer);
+            CreateUnit(1, $U("궁극의 비밀유닛"), loc.locComb, CurrentPlayer);
+        }
+    }
+    else {
+        if(Bring(CurrentPlayer, AtLeast, 2, $U("크라이 엔도 세트"), loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 2, $U("야채 피자") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 2, $U("불고기") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 5, $U("구운 햄") ,loc.locComb)) {
+            KillUnitAt(1, $U("야채 피자"), loc.locComb, CurrentPlayer);
+            CreateUnit(1, $U("궁극의 비밀재료"), loc.locComb, CurrentPlayer);
+        }
+        if(Bring(CurrentPlayer, AtLeast, 3, $U("모닝 세트"), loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 3, $U("불고기 피자") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 2, $U("재료 혼합 책") ,loc.locComb)
+        && Bring(CurrentPlayer, AtLeast, 5, $U("밀가루") ,loc.locComb)) {
+            KillUnitAt(1, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+            CreateUnit(1, $U("궁극의 비밀유닛"), loc.locComb, CurrentPlayer);
+        }
+    }
+
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("마스터 멕스 세트 [G]"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("마스터 멕스 세트 [A]") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("궁극의 비밀유닛") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("궁극의 비밀재료") ,loc.locComb)) {
+        KillUnitAt(1, $U("마스터 멕스 세트 [G]"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("마스터 멕스 세트 [A]"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("궁극의 비밀유닛"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("궁극의 비밀재료"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("궁극의 세트"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("궁극의 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("신의 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("마스터 멕스 세트 [G]"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("마스터 멕스 세트 [A]"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("퓨전 세트") ,loc.locComb)) {
+        KillUnitAt(1, $U("궁극의 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("신의 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("마스터 멕스 세트 [G]"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("마스터 멕스 세트 [A]"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("퓨전 세트"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("피자vs피자"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 5, $U("모닝 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기 야채 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("치즈 크러스트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("불고기"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(5, $U("모닝 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기 야채 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("치즈 크러스트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("불고기"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("버팔로윙 피자"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("피자/피자 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 5, $U("치즈 크러스트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 5, $U("치즈"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(5, $U("치즈 크러스트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(5, $U("치즈"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("스위스퐁듀"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("피자/피자 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 3, $U("불고기 야채 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 5, $U("불고기 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 3, $U("불고기"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 3, $U("자른 햄"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(3, $U("불고기 야채 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(5, $U("불고기 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(3, $U("불고기"), loc.locComb, CurrentPlayer);
+        KillUnitAt(3, $U("자른 햄"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("미트러버"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("피자/피자 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 5, $U("야채"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 5, $U("자른 피망"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 5, $U("피망"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(2, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(5, $U("야채"), loc.locComb, CurrentPlayer);
+        KillUnitAt(5, $U("자른 피망"), loc.locComb, CurrentPlayer);
+        KillUnitAt(5, $U("피망"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("멕시칸타코"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("퓨전 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 2, $U("피자/피자 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 10, $U("치즈 크러스트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(2, $U("퓨전 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(2, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(10, $U("치즈 크러스트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("라스페치아"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("버팔로윙 피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("미트러버"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("스위스퐁듀"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("멕시칸타코"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("라스페치아") ,loc.locComb)) {
+        KillUnitAt(1, $U("버팔로윙 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("미트러버"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("스위스퐁듀"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("멕시칸타코"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("라스페치아"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("Neo Pizza Master"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("피자/피자 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 30, $U("불"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(30, $U("불"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("Red Ruby"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("피자/피자 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 20, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(2, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(20, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("Shining Sun"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("피자/피자 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 5, $U("크라이 엔도 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("야채 크러스트 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 2, $U("야채"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(1, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(5, $U("크라이 엔도 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("야채 크러스트 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(2, $U("야채"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("Green Emerald"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 2, $U("피자/피자 세트") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 3, $U("야채 크러스트 피자"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 2, $U("제일 큰 콜라"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("재료 혼합 책") ,loc.locComb)) {
+        KillUnitAt(2, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(3, $U("야채 크러스트 피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(2, $U("제일 큰 콜라"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("재료 혼합 책"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("Diamond & Pearl"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 8, $U("피자/피자 세트"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("제일 큰 콜라") ,loc.locComb)) {
+        KillUnitAt(8, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("제일 큰 콜라"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("Grand Gold Master"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("Red Ruby") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("Shining Sun"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("Green Emerald"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("Diamond & Pearl"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("Grand Gold Master") ,loc.locComb)) {
+        KillUnitAt(1, $U("Red Ruby"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("Shining Sun"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("Green Emerald"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("Diamond & Pearl"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("Grand Gold Master"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("피자와 미식가"), loc.locComb, CurrentPlayer);
+    }
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("피자vs피자") ,loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("Neo Pizza Master"), loc.locComb)
+    && Bring(CurrentPlayer, AtLeast, 1, $U("피자와 미식가") ,loc.locComb)) {
+        KillUnitAt(1, $U("피자vs피자"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("Neo Pizza Master"), loc.locComb, CurrentPlayer);
+        KillUnitAt(1, $U("피자와 미식가"), loc.locComb, CurrentPlayer);
+        CreateUnit(1, $U("『궁극』 이란 존재..."), loc.locComb, CurrentPlayer);
+    } 
+}

@@ -1,0 +1,13 @@
+import loc;
+import customText as ct;
+function Update(cp) {
+
+    // 궁셋 동시분해
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("궁극의 세트"), loc.locDecom)) {
+        KillUnitAt(1, $U("궁극의 세트"), loc.locDecom, CurrentPlayer);
+        CreateUnit(9, $U("피자/피자 세트"), loc.locComb, CurrentPlayer);
+        CreateUnit(18, $U("퓨전 세트"), loc.locComb, CurrentPlayer);
+    }
+}
+
+

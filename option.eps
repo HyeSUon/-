@@ -1,0 +1,23 @@
+import customText as ct;
+
+
+const leftoverON = $L("leftoverON");
+const leftoverOFF = $L("leftoverOFF");
+const sLeftover = $S("p1Leftover");
+
+function Setting(cp) {
+    if(Bring(CurrentPlayer, AtLeast, 1, $U("궁셋찌꺼기 설정"), leftoverON)
+    ) {
+       if(Switch(sLeftover+cp,Cleared)) {
+            SetSwitch(sLeftover+cp, Set);
+            ct.print("\x04궁셋찌꺼기 \x17ON");
+       }
+    } else {
+        if(Switch(sLeftover+cp, Set)) {
+            SetSwitch(sLeftover+cp, Clear);
+            ct.print("\x04궁셋찌꺼기 \x17OFF");
+        }
+    }
+}
+
+

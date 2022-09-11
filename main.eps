@@ -1,0 +1,85 @@
+import combination as c;
+import loc;
+import option;
+import ability;
+import intro;
+import customText as ct;
+import timeAtk;
+var TriggerDelay = 4;
+
+var startTime, endTime;
+
+function onPluginStart() {
+    GetGlobalStringBuffer();
+    //MPQAddFile("Create.ogg", py_open("D:\starcMap\trigger\sound\유닛개발.ogg", 'rb').read());
+    foreach(cp : EUDLoopPlayer("Human", None, None)) { 
+        // 플레이어 모두에게 Setting
+        setcurpl(cp);
+        intro.DecideCivil();
+        CreateUnit(1, $U("궁셋찌꺼기 설정"), option.leftoverON, CurrentPlayer);
+        RunAIScript("Turn ON Shared Vision for Player 6");
+    }
+
+    // 파일런 인구수 8 > 200
+    SetMemoryEPD(EPD(0x00582264), Add, 366);
+    SetMemoryEPD(EPD(0x00582264) + 1, Add, 366);
+    SetMemoryEPD(EPD(0x00582264) + 2, Add, 366);
+    SetMemoryEPD(EPD(0x00582264) + 3, Add, 366);
+}
+function beforeTriggerExec() {
+    if(TriggerDelay > 3) {
+        foreach(cp : EUDLoopPlayer("Human", None, None)) {
+            setcurpl(cp);
+            
+            if(TriggerDelay < 30) {
+                intro.Start();
+            }
+            if(TriggerDelay == 99) {
+                ct.printAll("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            }
+
+            if(TriggerDelay > 100) {
+                intro.init(cp);
+                if(intro.ownCivil == cp)
+                    if(intro.DiffSetting(cp))
+                        TriggerDelay = 0;
+            }
+            if (TriggerDelay == 0) {
+                intro.s.DisplayAt(0);
+                loc.moveCombLoc(cp);
+                CenterView(loc.locComb);
+            }
+        }
+    }
+    ++TriggerDelay;
+    if(TriggerDelay == 3) {
+        TriggerDelay = 0;
+        foreach (cp : EUDLoopPlayer("Human", None, None)) {
+            setcurpl(cp);
+            loc.moveCombLoc(cp);
+            c.BaseTable(cp);
+            loc.moveComposLoc(cp);
+            ability.Update(cp);
+            option.Setting(cp);
+            timeAtk.Update(cp);
+        }
+        if(Deaths(2, AtLeast, 1, $U("손님의 심장"))) {
+            setcurpl(3);
+            Victory();
+        }
+        if(Deaths(3, AtLeast, 1, $U("손님의 심장"))) {
+            setcurpl(2);
+            Victory();
+        }
+
+    }
+}
+function afterTriggerExec() {
+    foreach(cp:EUDLoopPlayer("Human", None, None)) {
+        timeAtk.DetChat(cp);
+    }
+
+
+
+    dwwrite(0x6509A0, 0);
+}

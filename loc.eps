@@ -1,0 +1,59 @@
+import customText as ct;
+
+const locComb = $L("CombinationTable");
+const locDecom = $L("decomposition");
+const locDiffSel = $L("difficulty");
+
+function moveCombLoc(player) {
+    switch(player) {
+        case 0:
+            setloc(locComb, 544, 0, 1216, 320);
+            break;
+        case 1:
+            setloc(locComb, 6976, 0, 7648, 320);
+
+            break;
+        case 2:
+            setloc(locComb, 6976, 1280, 7648, 1600);
+            break;
+        case 3:
+            setloc(locComb, 6976, 2560, 7648, 2880);
+            break;
+    }
+    RemoveUnitAt(1, 227, locDiffSel, P12);
+}
+
+function moveComposLoc(player) {
+    switch(player) {
+        case 0:
+            setloc(locDecom, 0, 416, 96, 480);
+            break;
+        case 1:
+            setloc(locDecom, 8096, 416, 8192, 480);
+            break;
+        case 2:
+            setloc(locDecom, 8096, 1760, 8192, 1824);
+            break;
+        case 3:
+            setloc(locDecom, 8096, 3040, 8192, 3104);
+            break;
+    }
+    RemoveUnitAt(1, 227, locDiffSel, P12);
+}
+function moveDiffSelLoc(pos) {
+    switch(pos) {
+        case 0:
+            setloc(locDiffSel, 7264, 7648, 7328, 7712);
+            break;
+        case 1:
+            setloc(locDiffSel, 7360, 7648, 7424, 7712);
+            break;
+        case 2:
+            setloc(locDiffSel, 7456, 7648, 7520, 7712);
+            break;
+        case 3:
+            setloc(locDiffSel, 7552, 7648, 7616, 7712);
+            break;
+    }
+    RemoveUnitAt(1, 227, locDiffSel, P12);
+}
